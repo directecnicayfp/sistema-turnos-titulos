@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sistema de Reserva de Turnos - Atención Titulos</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 80vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .container {
+      background: white;
+      padding: 30px 50px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      max-width: 450px;
+      width: 100%;
+    }
+    .logo {
+      display: block;
+      margin: 0 auto 10px auto;
+      width: 100%;
+      max-width: 450px; /* opcional para limitar el tamaño máximo */
+      height: auto;
+    }
+    h1 { text-align: center; margin-bottom: 25px; color: #333; }
+    .form-group { margin-bottom: 20px; }
+    label { display: block; margin-bottom: 8px; font-weight: 600; }
+    input, select {
+  width: 450px;
+  max-width: 100%;
+  padding: 15px;
+  border: 2px solid #ddd;
+  border-radius: 9px;
+  font-size: 16px;
+  box-sizing: border-box; /* para incluir padding y borde en el ancho */
+}
+    button {
+      width: 100%; padding: 12px; background: #667eea; border: none;
+      border-radius: 8px; color: white; font-size: 18px; font-weight: 600;
+      cursor: pointer;
+    }
+    .message { margin-top: 20px; padding: 12px; border-radius: 8px; text-align: center; font-weight: 600; }
+    .success { background-color: #d4edda; color: #155724; }
+    .error { background-color: #f8d7da; color: #721c24; }
+    .loading { background-color: #d1ecf1; color: #0c5460; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img src="dt.png" alt="Logo" class="logo" />
+    <h1>Reserva tu Turno</h1>
+    <h1>Atención Títulos</h1>
+    
+    <form id="reservaForm">
+      <div class="form-group">
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" name="nombre" required>
+      </div>
+
+      <div class="form-group">
+        <label for="escuela">Escuela de origen</label>
+        <select id="escuela" name="escuela" required>
+          <option value="">Seleccione una escuela</option>
+          <option value="ESCUELA TECNICA Nº 1 JUAN B. ALBERDI">ESCUELA TECNICA Nº 1 JUAN B. ALBERDI</option>
+          <option value="ESCUELA TECNICA Nº 1 AGUILARES">ESCUELA TECNICA Nº 1 AGUILARES</option>
+          <option value="ESCUELA TECNICA Nº 1 BELLA VISTA">ESCUELA TECNICA Nº 1 BELLA VISTA</option>
+          <option value="ESCUELA TECNICA Nº 1 CONCEPCION">ESCUELA TECNICA Nº 1 CONCEPCION</option>
+          <option value="ESCUELA TECNICA Nº 1 LA COCHA">ESCUELA TECNICA Nº 1 LA COCHA</option>
+          <option value="ESCUELA TECNICA Nº 1 LASTENIA">ESCUELA TECNICA Nº 1 LASTENIA</option>
+          <option value="ESCUELA TECNICA - CRUCERO ARA GRAL. BELGRANO">ESCUELA TECNICA - CRUCERO ARA GRAL. BELGRANO</option>
+          <option value="ESCUELA TECNICA Nº 1 ING. MARIA A. CORREA">ESCUELA TECNICA Nº 1 ING. MARIA A. CORREA</option>
+          <option value="ESCUELA TECNICA Nº 1 VILLA DE LEALES">ESCUELA TECNICA Nº 1 VILLA DE LEALES</option>
+          <option value="ESCUELA TECNICA Nº 1 LULES">ESCUELA TECNICA Nº 1 LULES</option>
+          <option value="ESCUELA TECNICA Nº 1 MONTEROS">ESCUELA TECNICA Nº 1 MONTEROS</option>
+          <option value="ESCUELA TECNICA Nº 1 RANCHILLOS">ESCUELA TECNICA Nº 1 RANCHILLOS</option>
+          <option value="ESCUELA TECNICA Nº 1 RIO SECO">ESCUELA TECNICA Nº 1 RIO SECO</option>
+          <option value="ESCUELA TECNICA Nº 1 HILDA GUERRERO DE MOLINA">ESCUELA TECNICA Nº 1 HILDA GUERRERO DE MOLINA</option>
+          <option value="ESCUELA TECNICA Nº 1 TRANCAS">ESCUELA TECNICA Nº 1 TRANCAS</option>
+          <option value="ESCUELA TECNICA Nº 1 INDEPENDENCIA ARG.">ESCUELA TECNICA Nº 1 INDEPENDENCIA ARG.</option>
+          <option value="ESCUELA TECNICA Nº 2 OBISPO COLOMBRES">ESCUELA TECNICA Nº 2 OBISPO COLOMBRES</option>
+          <option value="ESCUELA TECNICA Nº 3 JUAN B. TERAN">ESCUELA TECNICA Nº 3 JUAN B. TERAN</option>
+          <option value="ESCUELA TECNICA Nº 4 JUAN XXIII">ESCUELA TECNICA Nº 4 JUAN XXIII</option>
+          <option value="ESCUELA TECNICA Nº 5">ESCUELA TECNICA Nº 5</option>
+          <option value="ESCUELA TECNICA Nº 1 RAFAEL MARINO">ESCUELA TECNICA Nº 1 RAFAEL MARINO</option>
+          <option value="ESCUELA TECNICA Nº 2 TAFI VIEJO LOMAS DE TAFI">ESCUELA TECNICA Nº 2 TAFI VIEJO LOMAS DE TAFI</option>
+          <option value="ESCUELA TECNICA EL MOLLAR">ESCUELA TECNICA EL MOLLAR</option>
+          <option value="ESCUELA AGROTECNICA SOLDADO CAJAL">ESCUELA AGROTECNICA SOLDADO CAJAL</option>
+          <option value="ESCUELA AGROTECNICA AMAICHA DEL VALLE">ESCUELA AGROTECNICA AMAICHA DEL VALLE</option>
+          <option value="ESCUELA AGROTECNICA AMALIA H. CASTILLO">ESCUELA AGROTECNICA AMALIA H. CASTILLO</option>
+          <option value="ESCUELA AGROTECNICA ING. AGR. ROBERTO FALCI">ESCUELA AGROTECNICA ING. AGR. ROBERTO FALCI</option>
+          <option value="ESCUELA AGROTECNICA ING. AGR. JORGE PALACIOS">ESCUELA AGROTECNICA ING. AGR. JORGE PALACIOS</option>
+          <option value="ESCUELA AGROTECNICA GASTONA SUD">ESCUELA AGROTECNICA GASTONA SUD</option>
+          <option value="ESCUELA AGROTECNICA JUAN B. ALBERDI">ESCUELA AGROTECNICA JUAN B. ALBERDI</option>
+          <option value="ESCUELA AGROTECNICA JUAN MANTOVANI">ESCUELA AGROTECNICA JUAN MANTOVANI</option>
+          <option value="ESCUELA AGROTECNICA LOS PIZARROS">ESCUELA AGROTECNICA LOS PIZARROS</option>
+          <option value="ESCUELA AGROTECNICA LOS SARMIENTO">ESCUELA AGROTECNICA LOS SARMIENTO</option>
+          <option value="ESCUELA AGROTECNICA LUDOVICO TUSEK">ESCUELA AGROTECNICA LUDOVICO TUSEK</option>
+          <option value="ESCUELA AGROTECNICA MARIANO RAMOS">ESCUELA AGROTECNICA MARIANO RAMOS</option>
+          <option value="ESCUELA AGROTECNICA MIGUEL A. TORRES">ESCUELA AGROTECNICA MIGUEL A. TORRES</option>
+          <option value="ESCUELA AGROTECNICA SIMOCA">ESCUELA AGROTECNICA SIMOCA</option>
+          <option value="ESCUELA AGROTECNICA TRANCAS">ESCUELA AGROTECNICA TRANCAS</option>
+          <option value="CENTRO DE EDUCACION AGRICOLA-LAS TALITAS">CENTRO DE EDUCACION AGRICOLA-LAS TALITAS</option>
+          <option value="CEP EMETA LAS CEJAS">CEP EMETA LAS CEJAS</option>
+          <option value="CEP EMETA SANTA ANA">CEP EMETA SANTA ANA</option>
+          <option value="CEP EMETA TRANCAS">CEP EMETA TRANCAS</option>
+          <option value="CFP HUMBERTO REYES - AGUILARES">CFP HUMBERTO REYES - AGUILARES</option>
+          <option value="CFP Nº 1 CAPITAL">CFP Nº 1 CAPITAL</option>
+          <option value="CFP Nº 1 VIRGEN DE FATIMA-CONCEPCION">CFP Nº 1 VIRGEN DE FATIMA-CONCEPCION</option>
+          <option value="CFP Nº 2 CAPITAL">CFP Nº 2 CAPITAL</option>
+          <option value="MISION CULT. RUR Y DOM Nº 11">MISION CULT. RUR Y DOM Nº 11</option>
+          <option value="MISION CULT. RUR Y DOM Nº 21">MISION CULT. RUR Y DOM Nº 21</option>
+          <option value="MISION MONOTECNICA Nº 11">MISION MONOTECNICA Nº 11</option>
+          <option value="MISION MONOTECNICA Nº 43">MISION MONOTECNICA Nº 43</option>
+          <option value="C.F.P. Nº 3- GARCIA FERNANDEZ Y AULAS MOVILES">C.F.P. Nº 3- GARCIA FERNANDEZ Y AULAS MOVILES</option>
+          <option value="MISION MONOTECNICA Nº72">MISION MONOTECNICA Nº72</option>
+          <option value="CFP ANEXO ESC TEC AGUILARES">CFP ANEXO ESC TEC AGUILARES</option>
+          <option value="ESC TEC Nº1 HILDA GUERRERO DE MOLINA ANEXO CFP-SANTA LUCIA">ESC TEC Nº1 HILDA GUERRERO DE MOLINA ANEXO CFP-SANTA LUCIA</option>
+          <option value="CFP ANEXO AGROT AMAICHA DEL VALLE">CFP ANEXO AGROT AMAICHA DEL VALLE</option>
+          <option value="CFP ANEXO ESC TEC Nº1 LASTENIA">CFP ANEXO ESC TEC Nº1 LASTENIA</option>
+          <option value="CFP ANEXO ESC TEC Nº 1 BELLA VISTA">CFP ANEXO ESC TEC Nº 1 BELLA VISTA</option>
+          <option value="CENTRO DE EDUCACION AGRICOLA - ANEXO CFP BELLA VISTA">CENTRO DE EDUCACION AGRICOLA - ANEXO CFP BELLA VISTA</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="fecha">Fecha del turno</label>
+        <input type="date" id="fecha" name="fecha" required>
+      </div>
+
+      <div class="form-group">
+        <label for="hora">Hora del turno</label>
+        <select id="hora" name="hora" required>
+          <option value="">Seleccione una fecha primero</option>
+        </select>
+      </div>
+
+      <button type="submit" id="submitBtn">Reservar Turno</button>
+      <div id="message" class="message"></div>
+    </form>
+  </div>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxNo2QIT0f79QCMAV0zSs69G2mGfLBscGwzMFyjD2RSQ6u5xGHZ11-98NTr6Rf3h722/exec'; // 👈 reemplazar con tu URL desplegada
+
+    const form = document.getElementById('reservaForm');
+    const fechaInput = document.getElementById('fecha');
+    const horaSelect = document.getElementById('hora');
+    const messageDiv = document.getElementById('message');
+    const submitBtn = document.getElementById('submitBtn');
+
+    const today = new Date();
+    fechaInput.min = today.toISOString().split('T')[0];
+
+    function showMessage(text, type) {
+      messageDiv.textContent = text;
+      messageDiv.className = 'message ' + type;
+    }
+    function clearMessage() {
+      messageDiv.textContent = '';
+      messageDiv.className = 'message';
+    }
+
+    fechaInput.addEventListener('input', () => {
+      clearMessage();
+      const fechaSeleccionada = fechaInput.value;
+      if (!fechaSeleccionada) {
+        horaSelect.innerHTML = '<option value="">Seleccione una fecha primero</option>';
+        return;
+      }
+
+      const selectedDate = new Date(fechaSeleccionada + 'T00:00:00');
+      const day = selectedDate.getDay();
+
+      if (day !== 3) {
+        showMessage('Solo se pueden reservar turnos los días miércoles.', 'error');
+        fechaInput.value = '';
+        horaSelect.innerHTML = '<option value="">Seleccione una fecha primero</option>';
+        return;
+      }
+
+      horaSelect.innerHTML = '<option>Cargando horarios disponibles...</option>';
+
+      fetch(`${scriptURL}?fecha=${fechaSeleccionada}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.error) {
+            showMessage('Error al obtener horarios ocupados: ' + data.error, 'error');
+            horaSelect.innerHTML = '<option value="">Seleccione una hora</option>';
+            return;
+          }
+
+          const horariosOcupados = (data.ocupados || []).map(h => h.trim());
+
+          const horariosDisponibles = ["09:00 - 10:00", "10:00 - 11:00", "11:00 - 12:00", "12:00 - 13:00"];
+
+          const horariosFinales = horariosDisponibles.filter(h => !horariosOcupados.includes(h));
+
+          horaSelect.innerHTML = '';
+          if (horariosFinales.length > 0) {
+            horaSelect.innerHTML = '<option value="">Seleccione una hora</option>';
+            horariosFinales.forEach(hora => {
+              const option = document.createElement('option');
+              option.value = hora;
+              option.textContent = hora;
+              horaSelect.appendChild(option);
+            });
+          } else {
+            horaSelect.innerHTML = '<option value="">No hay horarios disponibles</option>';
+          }
+        })
+        .catch(() => {
+          showMessage('Error al consultar horarios ocupados.', 'error');
+          horaSelect.innerHTML = '<option value="">Seleccione una hora</option>';
+        });
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      clearMessage();
+
+      if (!form.checkValidity()) {
+        showMessage('Por favor complete todos los campos correctamente.', 'error');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      showMessage('Enviando reserva...', 'loading');
+
+      const formData = new FormData(form);
+
+      fetch(scriptURL, { method: 'POST', body: formData })
+        .then(res => res.json())
+        .then(data => {
+          if (data.result === 'success') {
+            showMessage('Turno reservado correctamente. Revisa tu correo electrónico.', 'success');
+            form.reset();
+            horaSelect.innerHTML = '<option value="">Seleccione una fecha primero</option>';
+          } else {
+            showMessage('Error: ' + (data.message || 'Intente nuevamente.'), 'error');
+          }
+          submitBtn.disabled = false;
+        })
+        .catch(() => {
+          showMessage('Error de conexión. Intente nuevamente.', 'error');
+          submitBtn.disabled = false;
+        });
+    });
+  </script>
+</body>
+</html>
